@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>All Albums</h1>
+
+<p><a href="{% url 'add_album' %}">Add New Album</a></p>
+
+<div>
+    {% for album in albums %}
+        <div class="card">
+            {% if album.title %}
+                <p class="image"><img src={{album.cover_art}} alt="#"></p> 
+                <p class="album_title">{{album.title}}</p> 
+                <p class="album_artist">{{album.artist}}</p>
+            {% endif %}
+        </div>
+        <p>
+            <a href="{% url 'edit_album' pk=album.pk %}">Edit Album</a> <a href="{% url 'delete_album' pk=album.pk %}">Delete Album</a>
+        </p>
+    {% endfor %}
+</div>
+{% endblock %}
